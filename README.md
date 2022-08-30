@@ -63,10 +63,10 @@ and 2 text fields:
 
 ![UI](./snapshots/app-ui.png)
 
-Button "Connect with MetaMask" would call `WalletConnect.OpenDeepLink`, ref: <https://github.com/reddio-com/reddio-sdk/blob/b3716f833978109bb66e828c40879e26ea0b1b7a/examples/ReddioSDKUnityExample/Assets/WalletConnectUnity/Scripts/WalletConnectSharp.Unity/WalletConnect.cs#L486>
+Button "Connect with MetaMask" would call `WalletConnect.OpenDeepLink`, ref: <https://github.com/reddio-com/unity-sdk-demo/blob/d050d9bff7293bd5578a8df17c21f7c1725a2a26/Assets/WalletConnectUnity/Scripts/WalletConnectSharp.Unity/WalletConnect.cs#L486>
 
-Button "Get Stark Key" would call `Actions.GetStarkKey`, ref: <https://github.com/reddio-com/reddio-sdk/blob/b3716f833978109bb66e828c40879e26ea0b1b7a/examples/ReddioSDKUnityExample/Assets/Scenes/Actions.cs#L46>
+Button "Get Stark Key" would call `Actions.GetStarkKey`, ref: <https://github.com/reddio-com/unity-sdk-demo/blob/d050d9bff7293bd5578a8df17c21f7c1725a2a26/Assets/Scenes/Actions.cs#L46>
 
-Button "Disconnect" would call `Actions.Disconnect`, ref: <https://github.com/reddio-com/reddio-sdk/blob/b3716f833978109bb66e828c40879e26ea0b1b7a/examples/ReddioSDKUnityExample/Assets/Scenes/Actions.cs#L32>
+Button "Disconnect" would call `Actions.Disconnect`, ref: <https://github.com/reddio-com/unity-sdk-demo/blob/d050d9bff7293bd5578a8df17c21f7c1725a2a26/Assets/Scenes/Actions.cs#L32>
 
-`Actions.FixedUpdate` would sync the current account info to the top text fields, ref: <https://github.com/reddio-com/reddio-sdk/blob/b3716f833978109bb66e828c40879e26ea0b1b7a/examples/ReddioSDKUnityExample/Assets/Scenes/Actions.cs#L20>
+`Actions.FixedUpdate` would sync the current account info to the top text fields, ref: <https://github.com/reddio-com/unity-sdk-demo/blob/d050d9bff7293bd5578a8df17c21f7c1725a2a26/Assets/Scenes/Actions.cs#L20>
