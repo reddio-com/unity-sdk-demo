@@ -1,5 +1,11 @@
 # ReddioSDKUnityExample
 
+## Demo Video
+
+[<img src="https://img.youtube.com/vi/baQ-w2HaILc/maxresdefault.jpg" width="50%">](https://youtu.be/baQ-w2HaILc)
+
+[Watch this video on Youtube.](https://youtu.be/baQ-w2HaILc)
+
 ## Run the DEMO
 
 This project is build with Unity 2022.1.13f1, and the module "Android Build Support" is also required.
