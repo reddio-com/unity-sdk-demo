@@ -46,7 +46,7 @@ public class Actions : MonoBehaviour
     public async void GetStarkKey()
     {
         var address = WalletConnect.ActiveSession.Accounts[0];
-        var payload = new ReddioSign(address, "Sign", 5);
+        var payload = new ReddioSign(address, "Generate layer 2 key", 5);
         var response = await WalletConnect.ActiveSession.Send<ReddioSign, EthResponse>(payload);
         Debug.Log("Reddio Sign Completed");
         Debug.Log(response.Result);
