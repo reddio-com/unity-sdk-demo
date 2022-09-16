@@ -14,25 +14,62 @@ using WalletConnectUnity.Demo.Scripts;
 
 public class Actions : MonoBehaviour
 {
+    public WalletConnect wc;
     public TextMeshProUGUI accountText;
     public TextMeshProUGUI logText;
 
-    void FixedUpdate()
+    private int state = 0;
+
+    async void Update()
     {
         if (WalletConnect.ActiveSession.Accounts == null)
         {
             accountText.text = "Waiting for Connection";
-            return;
+        }
+        else
+        {
+            accountText.text = "\nConnected to Chain " + WalletConnect.ActiveSession.ChainId + ":\n" +
+                               WalletConnect.ActiveSession.Accounts[0];
         }
 
-        accountText.text = "\nConnected to Chain " + WalletConnect.ActiveSession.ChainId + ":\n" +
-                           WalletConnect.ActiveSession.Accounts[0];
+
+        if (state == 0 && WalletConnect.ActiveSession.Accounts != null &&
+            WalletConnect.ActiveSession.Accounts.Length > 0)
+        {
+            state = -1;
+            await WalletConnect.ActiveSession.Disconnect();
+            state = 0;
+        }
+        else if (state == 0 && WalletConnect.ActiveSession.ReadyForUserPrompt)
+        {
+            this.wc.OpenDeepLink();
+            state = 1;
+        }
+        else if (WalletConnect.ActiveSession.Accounts != null && state == 1)
+        {
+            state = 2;
+            this.logText.text += "Connceted\n";
+            await this.GetStarkKey();
+        }
+    }
+
+
+    public void Connect()
+    {
+        this.wc.OpenDeepLink();
+    }
+
+    public void ReConnect()
+    {
+        this.Disconnect();
+        this.wc.OpenDeepLink();
     }
 
     public async void Disconnect()
     {
         await WalletConnect.ActiveSession.Disconnect();
     }
+
 
     public async Task<string> SignTypedData<T>(T data, EIP712Domain eip712Domain, int addressIndex = 0)
     {
@@ -43,7 +80,7 @@ public class Actions : MonoBehaviour
         return results;
     }
 
-    public async void GetStarkKey()
+    public async Task GetStarkKey()
     {
         var address = WalletConnect.ActiveSession.Accounts[0];
         var payload = new ReddioSign(address, "Generate layer 2 key", 5);
