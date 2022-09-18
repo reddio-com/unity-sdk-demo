@@ -43,17 +43,18 @@ public class Actions : MonoBehaviour
         {
             this.wcGameObject = Instantiate(this.walletConnectPrefab, Vector3.zero, Quaternion.identity);
             this.wc = this.wcGameObject.GetComponent<WalletConnect>();
+            await this.wc.Connect();
         }
         else if (state == 0 && WalletConnect.ActiveSession.Accounts != null &&
                  WalletConnect.ActiveSession.Accounts.Length > 0)
         {
             state = -1;
-            this.Disconnect();
+           await this.Disconnect();
             state = 0;
         }
         else if (state == 0 && WalletConnect.ActiveSession.ReadyForUserPrompt)
         {
-            this.Connect();
+           await this.Connect();
             state = 1;
         }
         else if (WalletConnect.ActiveSession.Accounts != null && state == 1)
@@ -65,12 +66,13 @@ public class Actions : MonoBehaviour
     }
 
 
-    public void Connect()
+    public async Task Connect()
     {
         if (this.wc == null)
         {
             this.wcGameObject = Instantiate(this.walletConnectPrefab, Vector3.zero, Quaternion.identity);
             this.wc = this.wcGameObject.GetComponent<WalletConnect>();
+            await this.wc.Connect();
         }
 
         this.wc.OpenDeepLink();
@@ -82,12 +84,12 @@ public class Actions : MonoBehaviour
         this.wc.OpenDeepLink();
     }
 
-    public async void Disconnect()
+    public async Task Disconnect()
     {
         if (this.wcGameObject != null)
         {
-            Destroy(this.wcGameObject);
             await WalletConnect.ActiveSession.Disconnect();
+            Destroy(this.wcGameObject);
             this.wcGameObject = null;
             this.wc = null;
         }
