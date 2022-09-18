@@ -14,15 +14,22 @@ using WalletConnectUnity.Demo.Scripts;
 
 public class Actions : MonoBehaviour
 {
-    public WalletConnect wc;
+    const int STATE_IDLE = 0;
+    private const int STATE_WALLET_CONNECT_LOADED = 1;
+    private const int STATE_WALLET_CONNECT_INITIALIZED = 2;
+    private const int STATE_WALLET_CONNECT_CONNECTED = 3;
+    public GameObject walletConnectPrefab;
     public TextMeshProUGUI accountText;
     public TextMeshProUGUI logText;
 
+    private GameObject wcGameObject;
+    private WalletConnect wc = null;
     private int state = 0;
 
     async void Update()
     {
-        if (WalletConnect.ActiveSession.Accounts == null)
+        if (this.wcGameObject == null || WalletConnect.ActiveSession == null ||
+            WalletConnect.ActiveSession.Accounts == null)
         {
             accountText.text = "Waiting for Connection";
         }
@@ -32,30 +39,40 @@ public class Actions : MonoBehaviour
                                WalletConnect.ActiveSession.Accounts[0];
         }
 
-
-        if (state == 0 && WalletConnect.ActiveSession.Accounts != null &&
-            WalletConnect.ActiveSession.Accounts.Length > 0)
+        if (state == 0 && this.wcGameObject == null)
+        {
+            this.wcGameObject = Instantiate(this.walletConnectPrefab, Vector3.zero, Quaternion.identity);
+            this.wc = this.wcGameObject.GetComponent<WalletConnect>();
+        }
+        else if (state == 0 && WalletConnect.ActiveSession.Accounts != null &&
+                 WalletConnect.ActiveSession.Accounts.Length > 0)
         {
             state = -1;
-            await WalletConnect.ActiveSession.Disconnect();
+            this.Disconnect();
             state = 0;
         }
         else if (state == 0 && WalletConnect.ActiveSession.ReadyForUserPrompt)
         {
-            this.wc.OpenDeepLink();
+            this.Connect();
             state = 1;
         }
         else if (WalletConnect.ActiveSession.Accounts != null && state == 1)
         {
             state = 2;
             this.logText.text += "Connceted\n";
-            await this.GetStarkKey();
+            this.GetStarkKey();
         }
     }
 
 
     public void Connect()
     {
+        if (this.wc == null)
+        {
+            this.wcGameObject = Instantiate(this.walletConnectPrefab, Vector3.zero, Quaternion.identity);
+            this.wc = this.wcGameObject.GetComponent<WalletConnect>();
+        }
+
         this.wc.OpenDeepLink();
     }
 
@@ -67,9 +84,14 @@ public class Actions : MonoBehaviour
 
     public async void Disconnect()
     {
-        await WalletConnect.ActiveSession.Disconnect();
+        if (this.wcGameObject != null)
+        {
+            Destroy(this.wcGameObject);
+            await WalletConnect.ActiveSession.Disconnect();
+            this.wcGameObject = null;
+            this.wc = null;
+        }
     }
-
 
     public async Task<string> SignTypedData<T>(T data, EIP712Domain eip712Domain, int addressIndex = 0)
     {
@@ -80,7 +102,7 @@ public class Actions : MonoBehaviour
         return results;
     }
 
-    public async Task GetStarkKey()
+    public async void GetStarkKey()
     {
         var address = WalletConnect.ActiveSession.Accounts[0];
         var payload = new ReddioSign(address, "Generate layer 2 key", 5);

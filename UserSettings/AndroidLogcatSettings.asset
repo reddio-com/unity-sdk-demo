@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RFCN3042HLM",
         "name": "com.DefaultCompany.ReddioSDKUnityExample",
-        "processId": 25093,
+        "processId": 31345,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -54,6 +54,36 @@
             "deviceId": "RFCN3042HLM",
             "name": "com.DefaultCompany.ReddioSDKUnityExample",
             "processId": 25093,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCN3042HLM",
+            "name": "com.DefaultCompany.ReddioSDKUnityExample",
+            "processId": 22427,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCN3042HLM",
+            "name": "com.DefaultCompany.ReddioSDKUnityExample",
+            "processId": 28044,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCN3042HLM",
+            "name": "com.DefaultCompany.ReddioSDKUnityExample",
+            "processId": 28754,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCN3042HLM",
+            "name": "com.DefaultCompany.ReddioSDKUnityExample",
+            "processId": 29186,
+            "exited": false
+        },
+        {
+            "deviceId": "RFCN3042HLM",
+            "name": "com.DefaultCompany.ReddioSDKUnityExample",
+            "processId": 31345,
             "exited": false
         }
     ],
