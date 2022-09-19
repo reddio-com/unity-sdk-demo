@@ -50,7 +50,7 @@ Then import into the current project.
 
 We should integrate with MetaMask to connect with the Ethereum network.
 
-We use [WalletConnect](https://github.com/WalletConnect/WalletConnectUnity) for integrate with MetaMask Mobile, see [README.md#Installation](https://github.com/WalletConnect/WalletConnectUnity) and [README.md#Usage](https://github.com/WalletConnect/WalletConnectUnity#usage) for using it properly.
+We use [WalletConnect](https://github.com/WalletConnect/WalletConnectUnity) for integrate with MetaMask Mobile, see [README.md#Installation](https://github.com/WalletConnect/WalletConnectUnity#installation) and [README.md#Usage](https://github.com/WalletConnect/WalletConnectUnity#usage) for using it properly.
 
 ### Step 4: Write the logic about starkware
 
