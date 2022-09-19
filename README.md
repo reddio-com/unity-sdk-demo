@@ -38,7 +38,7 @@ The application would runs on your Android device which connected with the compu
 
 ### Step 2: Download and Import Plugin reddio-sdk-unity
 
-Download the latest `reddio-sdk-unity.unitypackage` from [Releases](https://github.com/reddio-com/reddio-sdk/releases).
+Download the latest `reddio-sdk-unity.unitypackage` from [Releases](https://github.com/reddio-com/reddio-unity-sdk/releases).
 
 Then import into the current project.
 
