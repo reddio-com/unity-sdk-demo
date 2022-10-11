@@ -38,7 +38,7 @@ The application would runs on your Android device which connected with the compu
 
 ### Step 2: Download and Import Plugin reddio-sdk-unity
 
-Download the latest `reddio-sdk-unity.unitypackage` from [Releases](https://github.com/reddio-com/reddio-sdk/releases).
+Download the latest `reddio-sdk-unity.unitypackage` from [Releases](https://github.com/reddio-com/reddio-unity-sdk/releases).
 
 Then import into the current project.
 
@@ -50,7 +50,7 @@ Then import into the current project.
 
 We should integrate with MetaMask to connect with the Ethereum network.
 
-We use [WalletConnect](https://github.com/WalletConnect/WalletConnectUnity) for integrate with MetaMask Mobile, see [README.md#Installation](https://github.com/WalletConnect/WalletConnectUnity) and [README.md#Usage](https://github.com/WalletConnect/WalletConnectUnity#usage) for using it properly.
+We use [WalletConnect](https://github.com/WalletConnect/WalletConnectUnity) for integrate with MetaMask Mobile, see [README.md#Installation](https://github.com/WalletConnect/WalletConnectUnity#installation) and [README.md#Usage](https://github.com/WalletConnect/WalletConnectUnity#usage) for using it properly.
 
 ### Step 4: Write the logic about starkware
 
