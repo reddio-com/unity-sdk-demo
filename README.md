@@ -18,6 +18,8 @@ Preview:
 
 ![snapshot](./snapshots/snapshot-app.jpg)
 
+![generate-random-private-key](./snapshots/generate-random-private-key.jpg)
+
 ## Build Demo from Scratch
 
 ### Step 1: Create new Unity Project and new Scene
