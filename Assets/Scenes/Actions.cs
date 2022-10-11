@@ -123,6 +123,19 @@ public class Actions : MonoBehaviour
         Debug.Log(publicKey.ToString("x"));
     }
 
+    public void GetRandomStarkKey()
+    {
+       var randomPrivateKey =  CryptoService.GetRandomPrivateKey();
+       var publicKey = CryptoService.GetPublicKey(randomPrivateKey);
+       
+       logText.text += $"Private Key:\n{randomPrivateKey.ToString("x")}\nPublic Key/Stark Key:\n{publicKey.ToString("x")}\n";
+       
+       Debug.Log("Private Key");
+       Debug.Log(randomPrivateKey.ToString("x"));
+       Debug.Log("Public Key");
+       Debug.Log(publicKey.ToString("x"));
+    }
+
     public class ReddioSign : JsonRpcRequest
     {
         [JsonProperty("params")] private string[] _parameters;

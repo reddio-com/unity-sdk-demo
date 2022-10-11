@@ -3,29 +3,11 @@
     "m_SelectedPackage": {
         "deviceId": "RFCN3042HLM",
         "name": "com.DefaultCompany.ReddioSDKUnityExample",
-        "processId": 10387,
+        "processId": 20303,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 32445,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 1822,
-            "exited": true
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 3374,
-            "exited": true
-        },
         {
             "deviceId": "RFCN3042HLM",
             "name": "com.teslacoilsw.launcher",
@@ -35,73 +17,31 @@
         {
             "deviceId": "RFCN3042HLM",
             "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 3842,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 17917,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 24337,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 25093,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 22427,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 28044,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
             "processId": 28754,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RFCN3042HLM",
             "name": "com.DefaultCompany.ReddioSDKUnityExample",
             "processId": 29186,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RFCN3042HLM",
             "name": "com.DefaultCompany.ReddioSDKUnityExample",
             "processId": 31345,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RFCN3042HLM",
             "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 3785,
-            "exited": false
+            "processId": 32065,
+            "exited": true
         },
         {
             "deviceId": "RFCN3042HLM",
             "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 8449,
-            "exited": false
-        },
-        {
-            "deviceId": "RFCN3042HLM",
-            "name": "com.DefaultCompany.ReddioSDKUnityExample",
-            "processId": 10387,
+            "processId": 20303,
             "exited": false
         }
     ],
