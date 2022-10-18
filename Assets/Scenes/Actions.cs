@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -9,9 +8,7 @@ using TMPro;
 using UnityEngine;
 using WalletConnectSharp.Core.Models;
 using WalletConnectSharp.Core.Models.Ethereum;
-using WalletConnectSharp.Core.Models.Ethereum.Types;
 using WalletConnectSharp.Unity;
-using WalletConnectUnity.Demo.Scripts;
 
 public class Actions : MonoBehaviour
 {
@@ -50,12 +47,12 @@ public class Actions : MonoBehaviour
                  WalletConnect.ActiveSession.Accounts.Length > 0)
         {
             state = -1;
-           await this.Disconnect();
+            await this.Disconnect();
             state = 0;
         }
         else if (state == 0 && WalletConnect.ActiveSession.ReadyForUserPrompt)
         {
-           await this.Connect();
+            await this.Connect();
             state = 1;
         }
         else if (WalletConnect.ActiveSession.Accounts != null && state == 1)
@@ -126,25 +123,45 @@ public class Actions : MonoBehaviour
 
     public void GetRandomStarkKey()
     {
-       var randomPrivateKey =  CryptoService.GetRandomPrivateKey();
-       var publicKey = CryptoService.GetPublicKey(randomPrivateKey);
-       
-       logText.text += $"Private Key:\n{randomPrivateKey.ToString("x")}\nPublic Key/Stark Key:\n{publicKey.ToString("x")}\n";
-       
-       Debug.Log("Private Key");
-       Debug.Log(randomPrivateKey.ToString("x"));
-       Debug.Log("Public Key");
-       Debug.Log(publicKey.ToString("x"));
+        var randomPrivateKey = CryptoService.GetRandomPrivateKey();
+        var publicKey = CryptoService.GetPublicKey(randomPrivateKey);
+
+        logText.text +=
+            $"Private Key:\n{randomPrivateKey.ToString("x")}\nPublic Key/Stark Key:\n{publicKey.ToString("x")}\n";
+
+        Debug.Log("Private Key");
+        Debug.Log(randomPrivateKey.ToString("x"));
+        Debug.Log("Public Key");
+        Debug.Log(publicKey.ToString("x"));
     }
 
-    public async void WaitingSequenceGetApproved()
+    public async void Trasnfer()
     {
-       var client =  ReddioClient.Testnet();
-       var result =
-           await client.WaitingTransferGetApproved("0x6736f7449da3bf44bf0f7bdd6463818e1ef272641d43021e8bca17b32ec2df0",
-               300523);
-       logText.text += JsonConvert.SerializeObject(result);
-       logText.text += "\n";
+        var client = ReddioClient.Testnet();
+        var starkKey = "0x6736f7449da3bf44bf0f7bdd6463818e1ef272641d43021e8bca17b32ec2df0";
+        var tokenId = "500";
+        var receiver = "0x7865bc66b610d6196a7cbeb9bf066c64984f6f06b5ed3b6f5788bd9a6cb099c";
+        var amount = "1";
+
+        logText.text += String.Format("Would transfer ERC721 from {0} to {1}, amount {2}, tokenId {3}\n", starkKey,
+            receiver, amount, tokenId);
+        var result = await client.Transfer(
+            starkKey,
+            "0xa7b68cf2ee72b2a0789914daa8ae928aec21b6b0bf020e394833f4c732d99d",
+            amount,
+            "0x941661bd1134dc7cc3d107bf006b8631f6e65ad5",
+            tokenId,
+            "ERC721",
+            receiver
+        );
+        logText.text += "Transfer Requested, sequence:" + result.Data.SequenceId + "\n";
+        logText.text += JsonConvert.SerializeObject(result) + "\n";
+        logText.text += "Waiting Transfer get Accepted, sequence:" + result.Data.SequenceId + "\n";
+        var waitingTransfer =
+            await client.WaitingTransferGetApproved(starkKey,
+                300523);
+        logText.text += "Transfer Accepted, sequence:" + waitingTransfer.Data[0].SequenceId + "\n";
+        logText.text += JsonConvert.SerializeObject(waitingTransfer) + "\n";
     }
 
     public class ReddioSign : JsonRpcRequest
