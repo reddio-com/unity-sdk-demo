@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Reddio.Api.V1;
 using Reddio.Crypto;
 using TMPro;
 using UnityEngine;
@@ -134,6 +135,16 @@ public class Actions : MonoBehaviour
        Debug.Log(randomPrivateKey.ToString("x"));
        Debug.Log("Public Key");
        Debug.Log(publicKey.ToString("x"));
+    }
+
+    public async void WaitingSequenceGetApproved()
+    {
+       var client =  ReddioClient.Testnet();
+       var result =
+           await client.WaitingTransferGetApproved("0x6736f7449da3bf44bf0f7bdd6463818e1ef272641d43021e8bca17b32ec2df0",
+               300523);
+       logText.text += JsonConvert.SerializeObject(result);
+       logText.text += "\n";
     }
 
     public class ReddioSign : JsonRpcRequest
