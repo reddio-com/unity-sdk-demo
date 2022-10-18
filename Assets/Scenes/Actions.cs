@@ -158,7 +158,7 @@ public class Actions : MonoBehaviour
         logText.text += JsonConvert.SerializeObject(result) + "\n";
         logText.text += "Waiting Transfer get Accepted, sequence:" + result.Data.SequenceId + "\n";
         var waitingTransfer =
-            await client.WaitingTransferGetApproved(starkKey,
+            await client.WaitingTransferGetAccepted(starkKey,
                 300523);
         logText.text += "Transfer Accepted, sequence:" + waitingTransfer.Data[0].SequenceId + "\n";
         logText.text += JsonConvert.SerializeObject(waitingTransfer) + "\n";
