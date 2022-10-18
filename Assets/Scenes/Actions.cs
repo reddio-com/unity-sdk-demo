@@ -154,14 +154,22 @@ public class Actions : MonoBehaviour
             "ERC721",
             receiver
         );
-        logText.text += "Transfer Requested, sequence:" + result.Data.SequenceId + "\n";
+        logText.text += "Transfer Requested, sequence: " + result.Data.SequenceId + "\n";
         logText.text += JsonConvert.SerializeObject(result) + "\n";
-        logText.text += "Waiting Transfer get Accepted, sequence:" + result.Data.SequenceId + "\n";
-        var waitingTransfer =
-            await client.WaitingTransferGetAccepted(starkKey,
-                300523);
-        logText.text += "Transfer Accepted, sequence:" + waitingTransfer.Data[0].SequenceId + "\n";
-        logText.text += JsonConvert.SerializeObject(waitingTransfer) + "\n";
+        logText.text += "Waiting Transfer get Accepted, sequence: " + result.Data.SequenceId + "\n";
+        try
+        {
+            var waitingTransfer =
+                await client.WaitingTransferGetAccepted(starkKey,
+                    result.Data.SequenceId);
+            logText.text += "Transfer Accepted, sequence: " + waitingTransfer.Data[0].SequenceId + "\n";
+            logText.text += JsonConvert.SerializeObject(waitingTransfer) + "\n";
+        }
+        catch (TransferFailedException e)
+        {
+            logText.text += "Transfer Failed, sequence:" + e.Reocrd[0].SequenceId + "\n";
+            logText.text += JsonConvert.SerializeObject(e.Reocrd) + "\n";
+        }
     }
 
     public class ReddioSign : JsonRpcRequest
