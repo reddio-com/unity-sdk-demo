@@ -22,6 +22,9 @@ namespace Reddio.Api.V1
         );
 
         public Task<ResponseWrapper<GetRecordResponse>> GetRecord(string starkKey, Int64 sequenceId);
+
+        public Task<ResponseWrapper<GetRecordsResponse>> GetRecords(string starkKey);
+
         public Task<ResponseWrapper<GetRecordResponse>> WaitingTransferGetAccepted(string starkKey, Int64 sequenceId);
 
         public Task<ResponseWrapper<GetRecordResponse>> WaitingTransferGetAccepted(
@@ -30,5 +33,8 @@ namespace Reddio.Api.V1
             TimeSpan interval,
             CancellationToken cancellationToken
         );
+
+        public Task<ResponseWrapper<GetBalanceResponse>> GetBalance(string starkKey, string assetId);
+        public Task<ResponseWrapper<GetBalancesResponse>> GetBalances(string starkKey);
     }
 }

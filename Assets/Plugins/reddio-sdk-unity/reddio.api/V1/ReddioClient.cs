@@ -1,5 +1,4 @@
 using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,6 +54,11 @@ namespace Reddio.Api.V1
             return await this._restClient.GetRecord(new GetRecordMessage(starkKey, sequenceId));
         }
 
+        public async Task<ResponseWrapper<GetRecordsResponse>> GetRecords(string starkKey)
+        {
+            return await this._restClient.GetRecords(new GetRecordsMessage(starkKey));
+        }
+
         public async Task<ResponseWrapper<GetRecordResponse>> WaitingTransferGetAccepted(string starkKey,
             long sequenceId)
         {
@@ -86,6 +90,16 @@ namespace Reddio.Api.V1
 
                 await Task.Delay(interval, cancellationToken);
             }
+        }
+
+        public async Task<ResponseWrapper<GetBalanceResponse>> GetBalance(string starkKey, string assetId)
+        {
+            return await _restClient.GetBalance(new GetBalanceMessage(starkKey, assetId));
+        }
+
+        public async Task<ResponseWrapper<GetBalancesResponse>> GetBalances(string starkKey)
+        {
+            return await _restClient.GetBalances(new GetBalancesMessage(starkKey));
         }
 
         internal async Task<string> GetAssetId(string contractAddress, string tokenId, string type)

@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using reddio.api;
 
 namespace Reddio.Api.V1.Rest
 {
@@ -23,7 +24,8 @@ namespace Reddio.Api.V1.Rest
         {
             var client = new HttpClient();
             // TODO(@STRRL): use the release version
-            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("reddio-client-csharp", "0.0.1"));
+            client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("reddio-client-csharp",
+                Versions.getUAVersion()));
             return client;
         }
 
@@ -89,6 +91,39 @@ namespace Reddio.Api.V1.Rest
             var response = await client.GetAsync(endpoint);
             response.EnsureSuccessStatusCode();
             var result = await ReadAsJsonAsync<ResponseWrapper<GetRecordResponse>>(response);
+            return result!;
+        }
+
+        public async Task<ResponseWrapper<GetRecordsResponse>> GetRecords(GetRecordsMessage getRecordsMessage)
+        {
+            var endpoint =
+                $"{_baseEndpoint}/v1/records?stark_key={getRecordsMessage.StarkKey}";
+            var client = HttpClientWithReddioUA();
+            var response = await client.GetAsync(endpoint);
+            response.EnsureSuccessStatusCode();
+            var result = await ReadAsJsonAsync<ResponseWrapper<GetRecordsResponse>>(response);
+            return result!;
+        }
+
+        public async Task<ResponseWrapper<GetBalanceResponse>> GetBalance(GetBalanceMessage getBalanceMessage)
+        {
+            var endpoint =
+                $"{_baseEndpoint}/v1/balance?stark_key={getBalanceMessage.StarkKey}&asset_id={getBalanceMessage.AssetId}";
+            var client = HttpClientWithReddioUA();
+            var response = await client.GetAsync(endpoint);
+            response.EnsureSuccessStatusCode();
+            var result = await ReadAsJsonAsync<ResponseWrapper<GetBalanceResponse>>(response);
+            return result!;
+        }
+
+        public async Task<ResponseWrapper<GetBalancesResponse>> GetBalances(GetBalancesMessage getBalancesMessage)
+        {
+            var endpoint =
+                $"{_baseEndpoint}/v1/balances?stark_key={getBalancesMessage.StarkKey}";
+            var client = HttpClientWithReddioUA();
+            var response = await client.GetAsync(endpoint);
+            response.EnsureSuccessStatusCode();
+            var result = await ReadAsJsonAsync<ResponseWrapper<GetBalancesResponse>>(response);
             return result!;
         }
 
