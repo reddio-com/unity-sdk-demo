@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Reddio.Api.V1.Rest
@@ -80,6 +81,13 @@ namespace Reddio.Api.V1.Rest
         public Task<ResponseWrapper<GetBalancesResponse>> GetBalances(GetBalancesMessage getBalancesMessage);
 
         public Task<ResponseWrapper<GetContractInfoResponse>> GetContractInfo(
-            GetContractInfoMessage getContractInfoMessage);
+            GetContractInfoMessage getContractInfoMessage
+        );
+
+        public Task<ResponseWrapper<OrderInfoResponse>> OrderInfo(OrderInfoMessage orderInfoMessage);
+
+        public Task<ResponseWrapper<OrderResponse>> Order(OrderMessage orderMessage);
+
+        public Task<ResponseWrapper<OrderListResponse>> OrderList(OrderListMessage orderListMessage);
     }
 }
